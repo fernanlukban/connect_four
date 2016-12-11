@@ -86,7 +86,11 @@ class Game():
 
 	def get_input(self):
 		while(True):
-			move = int(input("What is your move? Column #"))
+			try:
+				move = int(input("What is your move? Column #"))
+			except ValueError:
+				print('That is not a valid input, try again\n')
+				continue
 			if move not in range(1, self.grid.columns+1):
 				print("Not a valid column, try again\n")
 				continue
@@ -126,6 +130,7 @@ class Game():
 				for direction in node.compass:
 					if connected(node, direction) == 3:
 						return True
+						
 		return False
 
 
